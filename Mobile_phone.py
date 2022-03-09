@@ -52,16 +52,23 @@ while True:
     elif choice == 2:
         get_mobile = input("Enter Mobile Serial Number to be Searched ? ")
 
+        table = PrettyTable(["ID", "Serial Number", "Brand Name", "Model Name", "Manufacturing Year", "Manufacturing Month", "Price"])
+
         result = connection.execute("Select * From Smart_phones Where Serial_Number=" + get_mobile)
 
         for i in result:
-            print("ID", i[0])
-            print("Serial_Number", i[1])
-            print("Brand_Name", i[2])
-            print("Model_Name", i[3])
-            print("Manufacturing_Year", i[4])
-            print("Manufacturing_Month", i[5])
-            print("Price", i[6])
+
+            table.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6]])
+
+            # print("ID", i[0])
+            # print("Serial_Number", i[1])
+            # print("Brand_Name", i[2])
+            # print("Model_Name", i[3])
+            # print("Manufacturing_Year", i[4])
+            # print("Manufacturing_Month", i[5])
+            # print("Price", i[6])
+
+        print(table)   # it must be in outside of the loop
 
     elif choice == 3:
         get_mobile_serial = input("Enter a Serial Number to be Updated ? ")
@@ -93,7 +100,9 @@ while True:
         table = PrettyTable(["ID", "Serial Number", "Brand Name", "Model Name", "Manufacturing Year", "Manufacturing Month", "Price"])
 
         for i in result:
-            table.add_row([i[0], i[1], i[2], i[3], i[4], i[5]])
+
+            table.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6]])
+
             # print("ID", i[0])
             # print("Serial_Number", i[1])
             # print("Brand_Name", i[2])
@@ -101,6 +110,7 @@ while True:
             # print("Manufacturing_Year", i[4])
             # print("Manufacturing_Month", i[5])
             # print("Price", i[6])
+
         print(table)
 
     elif choice == 6:
