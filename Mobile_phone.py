@@ -1,5 +1,7 @@
 import sqlite3
 
+from prettytable import PrettyTable
+
 connection = sqlite3.connect("mobile.db")
 
 list_of_tables = connection.execute("Select name from sqlite_master Where type='table' And name='Smart_phones'").fetchall()
@@ -88,14 +90,18 @@ while True:
     elif choice == 5:
         result = connection.execute("Select * From Smart_phones")
 
+        table = PrettyTable(["ID", "Serial Number", "Brand Name", "Model Name", "Manufacturing Year", "Manufacturing Month", "Price"])
+
         for i in result:
-            print("ID", i[0])
-            print("Serial_Number", i[1])
-            print("Brand_Name", i[2])
-            print("Model_Name", i[3])
-            print("Manufacturing_Year", i[4])
-            print("Manufacturing_Month", i[5])
-            print("Price", i[6])
+            table.add_row([i[0], i[1], i[2], i[3], i[4], i[5]])
+            # print("ID", i[0])
+            # print("Serial_Number", i[1])
+            # print("Brand_Name", i[2])
+            # print("Model_Name", i[3])
+            # print("Manufacturing_Year", i[4])
+            # print("Manufacturing_Month", i[5])
+            # print("Price", i[6])
+        print(table)
 
     elif choice == 6:
         connection.close()
